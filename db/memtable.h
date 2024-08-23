@@ -53,6 +53,7 @@ class MemTable {
   // Add an entry into memtable that maps key to value at the
   // specified sequence number and with the specified type.
   // Typically value will be empty if type==kTypeDeletion.
+  // TODO(cxl): seq num?
   void Add(SequenceNumber seq, ValueType type, const Slice& key,
            const Slice& value);
 

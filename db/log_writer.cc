@@ -7,6 +7,7 @@
 #include <cstdint>
 
 #include "leveldb/env.h"
+
 #include "util/coding.h"
 #include "util/crc32c.h"
 
@@ -100,6 +101,10 @@ Status Writer::EmitPhysicalRecord(RecordType t, const char* ptr,
   if (s.ok()) {
     s = dest_->Append(Slice(ptr, length));
     if (s.ok()) {
+      // TODO(cxl): 1. 没有判断 s
+      // 2. length = 4 个字节没有必要?
+      // 3. 剩余 7 bytes 没有必要?
+      // 4. 按照 32KB block 调用 system call write, 32 怎么来的.
       s = dest_->Flush();
     }
   }
