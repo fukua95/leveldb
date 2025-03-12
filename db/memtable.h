@@ -5,11 +5,12 @@
 #ifndef STORAGE_LEVELDB_DB_MEMTABLE_H_
 #define STORAGE_LEVELDB_DB_MEMTABLE_H_
 
-#include <string>
-
 #include "db/dbformat.h"
 #include "db/skiplist.h"
+#include <string>
+
 #include "leveldb/db.h"
+
 #include "util/arena.h"
 
 namespace leveldb {
@@ -53,7 +54,6 @@ class MemTable {
   // Add an entry into memtable that maps key to value at the
   // specified sequence number and with the specified type.
   // Typically value will be empty if type==kTypeDeletion.
-  // TODO(cxl): seq num?
   void Add(SequenceNumber seq, ValueType type, const Slice& key,
            const Slice& value);
 
